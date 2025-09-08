@@ -37,8 +37,11 @@ catContainer.addEventListener("click", (e) => {
       rem.classList.remove("bg-[#34eb6e]");
     });
     e.target.classList.add("bg-[#34eb6e]");
-
-    loadTrees(li);
+    if (e.target.id == "all-trees") {
+      cardItems();
+    } else {
+      loadTrees(li);
+    }
   }
 });
 
@@ -72,11 +75,11 @@ const cardShow = (getData) => {
         </p>
         <div class="card-actions justify-between items-center mt-0 md:mt">
           <div
-            class="badge bg-[#DCFCE7] text-[#15803D] border-none p-1 md:p-4  rounded-lg"
+            class="badge bg-[#DCFCE7] text-[#15803D] border-none p-1  md:p-4  rounded-lg"
           >
             ${fruit.category}
           </div>
-          <h1 class="text-xl font-bold">${fruit.price}</h1>
+          <h1 class="font-bold md:text-xl">${fruit.price}</h1>
         </div>
       </div>
       <button onclick="showItem(${fruit.price},'${fruit.name}','${fruit.name}')" class="w-[90%] mx-auto my-2  bg-[#15803D] rounded-full p-1 md:p-3 text-white">
@@ -107,20 +110,26 @@ const showItem = (price, product, productName) => {
             </div> 
             `;
 
+  const sliderDiv = document.createElement("div");
+  sliderDiv.innerHTML = div.innerHTML;
+
   total += price;
   document.getElementById("total").innerText = total;
   document.getElementById("cart-total").innerText = total;
 
   cartContainer.append(div);
-  sliderContainer.append(div);
+  sliderContainer.append(sliderDiv);
   alert(productName + " is added");
-  div.querySelector(".delete").addEventListener("click", () => {
+  const deleteBtn = () => {
     div.remove();
+    sliderDiv.remove();
     total -= price;
     // alert(productName + " is removed");
     document.getElementById("total").innerText = total;
     document.getElementById("cart-total").innerText = total;
-  });
+  };
+  div.querySelector(".delete").addEventListener("click", deleteBtn);
+  sliderDiv.querySelector(".delete").addEventListener("click", deleteBtn);
 };
 
 cardItems();

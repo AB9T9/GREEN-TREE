@@ -23,7 +23,7 @@ const getCategories = () => {
       const categories = data.categories;
       categories.forEach((names) => {
         catContainer.innerHTML += `
-        <li id=${names.id} class="text-[#1F2937] p-2 mt-2 hover:bg-[#34eb6e] ">${names.category_name}</li>
+        <li id=${names.id} class="text-[#1F2937] p-2 mt-2 hover:bg-blue-400 ">${names.category_name}</li>
         `;
       });
     });

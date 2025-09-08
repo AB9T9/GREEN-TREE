@@ -1,3 +1,6 @@
 .poppins-font {
   font-family: "Poppins", sans-serif;
 }
+.small {
+  font-size: smaller;
+}

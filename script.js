@@ -57,29 +57,29 @@ const cardShow = (getData) => {
   fruitsCardParent.innerHTML = "";
   getData.forEach((fruit) => {
     fruitsCardParent.innerHTML += `
-     <div class="card bg-base-100 shadow-sm addBtn" id="${fruit.id}">
+     <div class="card bg-base-100 shadow-sm addBtn" id="${fruit.id} ">
       <figure>
         <img
           src="${fruit.image}"
           alt="Shoes"
-          class="object-cover h-50 w-full"
+          class="object-cover h-40 w-full md:h-46"
         />
       </figure>
-      <div class="card-body">
+      <div class="p-2 md:card-body">
         <h2 class="card-title">${fruit.name}</h2>
-        <p>
+        <p class="small md:text-base">
           ${fruit.description}
         </p>
-        <div class="card-actions justify-between items-center mt-2">
+        <div class="card-actions justify-between items-center mt-0 md:mt">
           <div
-            class="badge bg-[#DCFCE7] text-[#15803D] border-none p-4  rounded-lg"
+            class="badge bg-[#DCFCE7] text-[#15803D] border-none p-1 md:p-4  rounded-lg"
           >
             ${fruit.category}
           </div>
           <h1 class="text-xl font-bold">${fruit.price}</h1>
         </div>
       </div>
-      <button onclick="showItem(${fruit.price},'${fruit.name}','${fruit.name}')" class="w-[90%] mx-auto my-2  bg-[#15803D] rounded-full p-3 text-white">
+      <button onclick="showItem(${fruit.price},'${fruit.name}','${fruit.name}')" class="w-[90%] mx-auto my-2  bg-[#15803D] rounded-full p-1 md:p-3 text-white">
         Add to Cart
       </button>
     </div>
@@ -89,6 +89,7 @@ const cardShow = (getData) => {
 
 //! making add to card
 const cartContainer = document.getElementById("card-parent");
+const sliderContainer = document.getElementById("slider-container");
 
 const showItem = (price, product, productName) => {
   const div = document.createElement("div");
@@ -108,13 +109,17 @@ const showItem = (price, product, productName) => {
 
   total += price;
   document.getElementById("total").innerText = total;
+  document.getElementById("cart-total").innerText = total;
+
   cartContainer.append(div);
+  sliderContainer.append(div);
   alert(productName + " is added");
   div.querySelector(".delete").addEventListener("click", () => {
     div.remove();
     total -= price;
     alert(productName + " is removed");
     document.getElementById("total").innerText = total;
+    document.getElementById("cart-total").innerText = total;
   });
 };
 

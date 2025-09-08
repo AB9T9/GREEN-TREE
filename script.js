@@ -117,7 +117,7 @@ const showItem = (price, product, productName) => {
   div.querySelector(".delete").addEventListener("click", () => {
     div.remove();
     total -= price;
-    alert(productName + " is removed");
+    // alert(productName + " is removed");
     document.getElementById("total").innerText = total;
     document.getElementById("cart-total").innerText = total;
   });

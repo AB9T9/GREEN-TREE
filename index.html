@@ -37,9 +37,15 @@
           <ul
             class="flex items-center gap-2 w-[80%] md:gap-4 md:w-[20%] text-white"
           >
-            <li class="small md:text-base">About</li>
-            <li class="small md:text-base">Gallery</li>
-            <li class="small md:text-base">Plant a Tree</li>
+            <li class="small border-gray-200 hover:border-b-2 md:text-base">
+              About
+            </li>
+            <li class="small border-gray-200 hover:border-b-2 md:text-base">
+              Gallery
+            </li>
+            <li class="small border-gray-200 hover:border-b-2 md:text-base">
+              Plant a Tree
+            </li>
           </ul>
 
           <button
@@ -87,7 +93,7 @@
           >
             <li
               id="all-trees"
-              class="text-[#1F2937] p-2 mt-2 hover:bg-[#15803D] hover:text-white"
+              class="text-[#1F2937] p-1 mt-2 hover:bg-[#15803D] hover:text-white text-center w-full"
             >
               All Trees
             </li>
@@ -209,6 +215,21 @@
         </p>
       </div>
     </footer>
+
+    <!-- Open the modal using ID.showModal() method -->
+
+    <dialog id="modalbox" class="modal">
+      <div class="modal-box">
+        <div id="modal-container"></div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
     <script src="./script.js"></script>
   </body>
 </html>

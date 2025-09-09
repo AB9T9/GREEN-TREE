@@ -1,4 +1,7 @@
 const catContainer = document.getElementById("categories-container");
+const modalContainer = document.getElementById("modal-container");
+const cartContainer = document.getElementById("card-parent");
+const modal = document.querySelector("#modalbox");
 
 //! taking id to add to card
 
@@ -23,7 +26,7 @@ const getCategories = () => {
       const categories = data.categories;
       categories.forEach((names) => {
         catContainer.innerHTML += `
-        <li id=${names.id} class="text-[#1F2937] p-2 mt-2 hover:bg-[#15803D] hover:text-white ">${names.category_name}</li>
+        <li id=${names.id} class="text-[#1F2937] rounded-md p-1 mt-2 hover:bg-[#15803D] hover:text-white text-center w-full">${names.category_name}</li>
         `;
       });
     });
@@ -69,9 +72,9 @@ const cardShow = (getData) => {
         />
       </figure>
       <div class="p-2 md:card-body">
-        <h2 class="card-title">${fruit.name}</h2>
+        <h2 onclick="modalClick('${fruit.name}','${fruit.image}','${fruit.category}',${fruit.price},'${fruit.description}')" class="card-title">${fruit.name}</h2>
         <p class="small md:text-base">
-          ${fruit.description}
+          '${fruit.description}'
         </p>
         <div class="card-actions justify-between items-center mt-0 md:mt">
           <div
@@ -91,7 +94,6 @@ const cardShow = (getData) => {
 };
 
 //! making add to card
-const cartContainer = document.getElementById("card-parent");
 
 const showItem = (price, product, productName) => {
   const div = document.createElement("div");
@@ -110,11 +112,12 @@ const showItem = (price, product, productName) => {
             `;
 
   total += price;
+
   document.getElementById("total").innerText = total;
 
   cartContainer.append(div);
 
-  alert(productName + " is added");
+  alert(productName + " has been added to the cart");
   const deleteBtn = () => {
     div.remove();
 
@@ -124,6 +127,19 @@ const showItem = (price, product, productName) => {
   };
   div.querySelector(".delete").addEventListener("click", deleteBtn);
 };
+
+const modalClick = (trees, image, category, price, description) => {
+  console.log(trees);
+  modalContainer.innerHTML = `
+  <h1 class="font-bold my-2 ">${trees}</h1>
+<img src="${image}" alt="${trees}" class="w-full h-48 object-cover rounded mb-2"/>
+
+  <h1 class=""><span class="font-bold">Category: </span>${category}</h1>
+  <h1><span class="font-bold">Price : </span>${price}</h1>
+  <p><span class="font-bold">Description:</span>${description}</p>`;
+  modal.showModal();
+};
+//! making modal
 
 cardItems();
 getCategories();

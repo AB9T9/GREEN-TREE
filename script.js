@@ -23,7 +23,7 @@ const getCategories = () => {
       const categories = data.categories;
       categories.forEach((names) => {
         catContainer.innerHTML += `
-        <li id=${names.id} class="text-[#1F2937] p-2 mt-2 hover:bg-blue-400 ">${names.category_name}</li>
+        <li id=${names.id} class="text-[#1F2937] p-2 mt-2 hover:bg-[#15803D] hover:text-white ">${names.category_name}</li>
         `;
       });
     });
@@ -34,9 +34,9 @@ catContainer.addEventListener("click", (e) => {
   if (e.target.localName == "li") {
     const li = e.target.id;
     document.querySelectorAll("li").forEach((rem) => {
-      rem.classList.remove("bg-[#34eb6e]");
+      rem.classList.remove("bg-[#15803D]", "text-white");
     });
-    e.target.classList.add("bg-[#34eb6e]");
+    e.target.classList.add("bg-[#15803D]", "text-white");
     if (e.target.id == "all-trees") {
       cardItems();
     } else {
@@ -92,7 +92,6 @@ const cardShow = (getData) => {
 
 //! making add to card
 const cartContainer = document.getElementById("card-parent");
-const sliderContainer = document.getElementById("slider-container");
 
 const showItem = (price, product, productName) => {
   const div = document.createElement("div");
@@ -110,26 +109,20 @@ const showItem = (price, product, productName) => {
             </div> 
             `;
 
-  const sliderDiv = document.createElement("div");
-  sliderDiv.innerHTML = div.innerHTML;
-
   total += price;
   document.getElementById("total").innerText = total;
-  document.getElementById("cart-total").innerText = total;
 
   cartContainer.append(div);
-  sliderContainer.append(sliderDiv);
+
   alert(productName + " is added");
   const deleteBtn = () => {
     div.remove();
-    sliderDiv.remove();
+
     total -= price;
     // alert(productName + " is removed");
     document.getElementById("total").innerText = total;
-    document.getElementById("cart-total").innerText = total;
   };
   div.querySelector(".delete").addEventListener("click", deleteBtn);
-  sliderDiv.querySelector(".delete").addEventListener("click", deleteBtn);
 };
 
 cardItems();

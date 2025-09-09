@@ -2,7 +2,16 @@ const catContainer = document.getElementById("categories-container");
 const modalContainer = document.getElementById("modal-container");
 const cartContainer = document.getElementById("card-parent");
 const modal = document.querySelector("#modalbox");
-
+// spiner
+const spinner = (status) => {
+  if (status == true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("card-sec").classList.add("hidden");
+  } else {
+    document.getElementById("card-sec").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+};
 //! taking id to add to card
 
 let total = 0;
@@ -11,6 +20,7 @@ const totalCount = 0;
 //!  card fetching
 
 const cardItems = () => {
+  spinner(true);
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((res) => res.json())
     .then((data) => {
@@ -26,7 +36,8 @@ const getCategories = () => {
       const categories = data.categories;
       categories.forEach((names) => {
         catContainer.innerHTML += `
-        <li id=${names.id} class="text-[#1F2937] rounded-md p-1 mt-2 hover:bg-[#15803D] hover:text-white text-center w-full">${names.category_name}</li>
+        <li id=${names.id} class="text-[#1F2937] rounded-md p-1 mt-2 hover:bg-[#15803D] hover:text-white 
+        md:text-center md:w-full">${names.category_name}</li>
         `;
       });
     });
@@ -91,6 +102,7 @@ const cardShow = (getData) => {
     </div>
     `;
   });
+  spinner(false);
 };
 
 //! making add to card
@@ -114,6 +126,7 @@ const showItem = (price, product, productName) => {
   total += price;
 
   document.getElementById("total").innerText = total;
+  document.getElementById("cart-div").classList.remove("hidden");
 
   cartContainer.append(div);
 
@@ -124,6 +137,9 @@ const showItem = (price, product, productName) => {
     total -= price;
     // alert(productName + " is removed");
     document.getElementById("total").innerText = total;
+    if (total === 0) {
+      document.getElementById("cart-div").classList.add("hidden");
+    }
   };
   div.querySelector(".delete").addEventListener("click", deleteBtn);
 };

@@ -145,7 +145,7 @@ const showItem = (price, product, productName) => {
 };
 
 const modalClick = (trees, image, category, price, description) => {
-  console.log(trees);
+ 
   modalContainer.innerHTML = `
   <h1 class="font-bold my-2 ">${trees}</h1>
 <img src="${image}" alt="${trees}" class="w-full h-48 object-cover rounded mb-2"/>

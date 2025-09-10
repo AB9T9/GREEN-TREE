@@ -85,7 +85,7 @@ const cardShow = (getData) => {
       <div class="p-2 md:card-body">
         <h2 onclick="modalClick('${fruit.name}','${fruit.image}','${fruit.category}',${fruit.price},'${fruit.description}')" class="card-title">${fruit.name}</h2>
         <p class="small md:text-base">
-          '${fruit.description}'
+          ${fruit.description}
         </p>
         <div class="card-actions justify-between items-center mt-0 md:mt">
           <div
